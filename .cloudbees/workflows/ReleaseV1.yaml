@@ -41,4 +41,8 @@ jobs:
         shell: sh
         run: |
           echo "Deploying VacationRentals helm install vacation-rentals to production"
+      - name: test bash
+        uses: docker://bash
+        run: |
+          echo testing bash
 
