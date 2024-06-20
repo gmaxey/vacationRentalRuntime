@@ -1,11 +1,11 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: Vacation Rentals 1.5
-
 on:
   push:
     branches:
-      - '**'
+      - "**"
+  workflow_dispatch:
 jobs:
   build:
     steps:
@@ -29,8 +29,10 @@ jobs:
       - name: deploy
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
-        run: |
-          echo "Deploying VacationRentals with helm install vacation-rentals to qa"
+        run: >
+          echo "Deploying VacationRentals with helm install vacation-rentals to
+          qa"
+
           echo Connect to app at https://https://vacationrentals.qa:${{ vars.CONNECTION_PORT }}
   deploy-production:
     needs: deploy-qa
@@ -39,10 +41,10 @@ jobs:
       - name: deploy
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
-        run: |
-          echo "Deploying VacationRentals helm install vacation-rentals to production"
+        run: >
+          echo "Deploying VacationRentals helm install vacation-rentals to
+          production"
       - name: test bash
         uses: docker://bash
         run: |
           echo testing bash...
-
