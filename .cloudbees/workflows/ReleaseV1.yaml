@@ -24,7 +24,7 @@ jobs:
           echo "Analyzing"
   deploy-qa:
     needs: build
-    environment: qa
+    environment: gpm-qa
     steps:
       - name: deploy
         uses: docker://golang:1.20.3-alpine3.17
@@ -35,8 +35,8 @@ jobs:
 
           echo Connect to app at https://https://vacationrentals.qa:${{ vars.CONNECTION_PORT }}
   deploy-production:
-    needs: deploy-qa
-    environment: Production
+    needs: gpm-qa
+    environment: gpm-prod
     steps:
       - name: deploy
         uses: docker://golang:1.20.3-alpine3.17
