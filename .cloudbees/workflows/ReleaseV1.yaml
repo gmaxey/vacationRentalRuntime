@@ -32,7 +32,7 @@ jobs:
 
           echo Connect to app at https://https://vacationrentals.qa:${{ vars.CONNECTION_PORT }}
   deploy-production:
-    needs: gpm-qa
+    needs: deploy-qa
     environment: gpm-prod
     steps:
       - name: deploy
